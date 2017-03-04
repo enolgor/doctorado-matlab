@@ -1,0 +1,152 @@
+<link rel="stylesheet" href="../markdown.css">
+<p><em>Estadística y Métodos Matemáticos para la Investigación: Métodos Numéricos con Matlab.
+Curso 2016-17</em></p>
+<p><em>Eneko Olivares Gorriti, 04/03/2017</em></p>
+<h2 id="tareas-de-las-unidades-1-2-y-3">Tareas de las unidades 1, 2 y 3</h2>
+<h3 id="ejercicio-1">Ejercicio 1</h3>
+<p>Código:</p>
+<hr>
+<pre><code class="lang-matlab">n = <span class="hljs-keyword">input</span>(<span class="hljs-string">'Número de términos?: '</span>)<span class="hljs-comment">;</span>
+a = []<span class="hljs-comment">;</span>
+<span class="hljs-keyword">for</span> k=<span class="hljs-number">0</span>:n
+    <span class="hljs-keyword">if</span> k == <span class="hljs-number">0</span>
+        anterior = <span class="hljs-number">0</span><span class="hljs-comment">;</span>
+    <span class="hljs-keyword">else</span>
+        anterior = a(k)<span class="hljs-comment">;</span>
+    <span class="hljs-keyword">end</span>
+    a(k+<span class="hljs-number">1</span>) = anterior + ((<span class="hljs-number">-1</span>).^k)/(<span class="hljs-number">2</span>.*k + <span class="hljs-number">1</span>)<span class="hljs-comment">;</span>
+<span class="hljs-keyword">end</span>
+disp(<span class="hljs-string">'Términos:'</span>)<span class="hljs-comment">;</span>
+disp(a)<span class="hljs-comment">;</span>
+
+tolerancia = <span class="hljs-keyword">abs</span>(<span class="hljs-keyword">input</span>(<span class="hljs-string">'Tolerancia?: '</span>))<span class="hljs-comment">;</span>
+k = <span class="hljs-number">0</span><span class="hljs-comment">;</span>
+<span class="hljs-keyword">err</span> = tolerancia+<span class="hljs-number">1</span><span class="hljs-comment">;</span>
+a = <span class="hljs-number">0</span><span class="hljs-comment">;</span>
+<span class="hljs-keyword">while</span> tolerancia &lt; <span class="hljs-keyword">err</span>
+    a = a + ((<span class="hljs-number">-1</span>).^k)/(<span class="hljs-number">2</span>.*k + <span class="hljs-number">1</span>)<span class="hljs-comment">;</span>
+    <span class="hljs-keyword">err</span> = <span class="hljs-keyword">abs</span>(a - pi/<span class="hljs-number">4</span>)<span class="hljs-comment">;</span>
+    k = k + <span class="hljs-number">1</span><span class="hljs-comment">;</span>
+<span class="hljs-keyword">end</span>
+disp([<span class="hljs-string">'Número de términos: '</span>,num2str(k),<span class="hljs-string">', Error: '</span>,num2str(<span class="hljs-keyword">err</span>),<span class="hljs-string">', Valor: '</span>,num2str(a)])<span class="hljs-comment">;</span>
+</code></pre>
+<hr>
+<p>En la primera parte pedimos el número de términos con el comando input y calculamos con un bucle
+<code>for</code> los términos en la posición <code>k+1</code> del vector <code>a</code>. Utilizamos el valor anterior <code>k</code> para el 
+cálculo del valor actual <code>k+1</code> salvo en el primer caso, que es 0.</p>
+<p>En la segunda parte pedimos la tolerancia con el comando input (nos aseguramos que no es negativo
+con <code>abs</code>) y utilizamos un bucle <code>while</code> para calcular los términos mientras el error sea mayor a
+la tolerancia pedida (por eso inicializamos el error como la <code>tolerancia + 1</code>).</p>
+<p>Podemos ver dos ejemplos de este script a continuación:</p>
+<hr>
+<pre><code class="lang-matlab">&gt;&gt; <span class="hljs-selector-tag">ejercicio1</span>
+<span class="hljs-selector-tag">N</span>ú<span class="hljs-selector-tag">mero</span> <span class="hljs-selector-tag">de</span> <span class="hljs-selector-tag">t</span>é<span class="hljs-selector-tag">rminos</span>?: 5
+<span class="hljs-selector-tag">T</span>é<span class="hljs-selector-tag">rminos</span>:
+    1<span class="hljs-selector-class">.0000</span>    0<span class="hljs-selector-class">.6667</span>    0<span class="hljs-selector-class">.8667</span>    0<span class="hljs-selector-class">.7238</span>    0<span class="hljs-selector-class">.8349</span>    0<span class="hljs-selector-class">.7440</span>
+
+<span class="hljs-selector-tag">Tolerancia</span>?: 0<span class="hljs-selector-class">.1</span>
+<span class="hljs-selector-tag">N</span>ú<span class="hljs-selector-tag">mero</span> <span class="hljs-selector-tag">de</span> <span class="hljs-selector-tag">t</span>é<span class="hljs-selector-tag">rminos</span>: 3, <span class="hljs-selector-tag">Error</span>: 0<span class="hljs-selector-class">.081269</span>, <span class="hljs-selector-tag">Valor</span>: 0<span class="hljs-selector-class">.86667</span>
+
+&gt;&gt; <span class="hljs-selector-tag">ejercicio1</span>
+<span class="hljs-selector-tag">N</span>ú<span class="hljs-selector-tag">mero</span> <span class="hljs-selector-tag">de</span> <span class="hljs-selector-tag">t</span>é<span class="hljs-selector-tag">rminos</span>?: 10
+<span class="hljs-selector-tag">T</span>é<span class="hljs-selector-tag">rminos</span>:
+    1<span class="hljs-selector-class">.0000</span>    0<span class="hljs-selector-class">.6667</span>    0<span class="hljs-selector-class">.8667</span>    0<span class="hljs-selector-class">.7238</span>    0<span class="hljs-selector-class">.8349</span>    0<span class="hljs-selector-class">.7440</span>    0<span class="hljs-selector-class">.8209</span>    0<span class="hljs-selector-class">.7543</span>    0<span class="hljs-selector-class">.8131</span>    0<span class="hljs-selector-class">.7605</span>    0<span class="hljs-selector-class">.8081</span>
+
+<span class="hljs-selector-tag">Tolerancia</span>?: 0<span class="hljs-selector-class">.001</span>
+<span class="hljs-selector-tag">N</span>ú<span class="hljs-selector-tag">mero</span> <span class="hljs-selector-tag">de</span> <span class="hljs-selector-tag">t</span>é<span class="hljs-selector-tag">rminos</span>: 250, <span class="hljs-selector-tag">Error</span>: 0<span class="hljs-selector-class">.001</span>, <span class="hljs-selector-tag">Valor</span>: 0<span class="hljs-selector-class">.7844</span>
+</code></pre>
+<hr>
+<h3 id="ejercicio-2">Ejercicio 2</h3>
+<p>Código:</p>
+<hr>
+<pre><code class="lang-matlab">x = linspace(<span class="hljs-number">-2</span>*pi,<span class="hljs-number">2</span>*pi,<span class="hljs-number">400</span>);
+y = x;
+[<span class="hljs-keyword">X</span>,<span class="hljs-keyword">Y</span>] = meshgrid(x,y);
+F = sin(abs(<span class="hljs-keyword">X</span>)+abs(<span class="hljs-keyword">Y</span>));
+mesh(<span class="hljs-keyword">X</span>,<span class="hljs-keyword">Y</span>,F);
+figure
+surf(<span class="hljs-keyword">X</span>,<span class="hljs-keyword">Y</span>,F);
+figure
+contour(<span class="hljs-keyword">X</span>,<span class="hljs-keyword">Y</span>,F,<span class="hljs-string">'ShowText'</span>,<span class="hljs-string">'on'</span>);
+</code></pre>
+<hr>
+<p>Utilizamos linspace para crear <code>x</code> e <code>y</code> con 400 términos equidistantes entre <code>-2π</code> y <code>2π</code>.
+Con <code>meshgrid</code> creamos la malla de puntos para evaluarlo y guardar el resultado en <code>F</code>. A 
+continucación utilizamos los comandos <code>mesh</code>, <code>surf</code> y <code>contour</code> para visualizar el resultado 
+(intercalando el comando <code>figure</code> para crear nuevas figuras cada vez).</p>
+<p><strong>Mesh:</strong>
+<img src="https://github.com/jasuade/MatlabDoct/blob/enolgor/ejercicio1_mesh.png?raw=true" alt="mesh"></p>
+<p><strong>Surf:</strong>
+<img src="https://github.com/jasuade/MatlabDoct/blob/enolgor/ejercicio1_surf.png?raw=true" alt="surf"></p>
+<p><strong>Contour:</strong>
+<img src="https://github.com/jasuade/MatlabDoct/blob/enolgor/ejercicio1_contour.png?raw=true" alt="contour"></p>
+<h3 id="ejercicio-3">Ejercicio 3</h3>
+<p>Código:</p>
+<hr>
+<pre><code class="lang-matlab">A=[<span class="hljs-number">-8</span>, <span class="hljs-number">5</span>, <span class="hljs-number">7</span>, <span class="hljs-number">-3</span>;
+    <span class="hljs-number">9</span>, <span class="hljs-number">2</span>, <span class="hljs-number">9</span>, <span class="hljs-number">-9</span>;
+    <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">-3</span>, <span class="hljs-number">-7</span>;
+    <span class="hljs-number">-6</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">5</span>];
+
+B = [<span class="hljs-number">-90</span>, <span class="hljs-number">-7</span>, <span class="hljs-number">15</span>, <span class="hljs-number">-30</span>]';
+
+X = A\B;
+[L,U,P]=lu(A);
+X2 = U\(L\(P*B));
+</code></pre>
+<hr>
+<p>Para resolver el sistema guardamos en <code>A</code> los términos de la matriz de coeficientes y en <code>B</code>
+el vector de términos independientes (transpuesto). En la variable <code>X</code> guardamos el resultado
+de esta ecuación mediante el método de división y en <code>X2</code> el resultado mediante la factorización
+<code>LU</code>.</p>
+<p>Podemos ver el resultado de ejecutar este script a continuación:</p>
+<hr>
+<pre><code class="lang-matlab">&gt;&gt; ejercicio3
+&gt;&gt; X
+
+X =
+
+    <span class="hljs-number">6.7348</span>
+   <span class="hljs-number">-0.0030</span>
+   <span class="hljs-number">-3.3927</span>
+    <span class="hljs-number">4.1192</span>
+
+&gt;&gt; L
+
+L =
+
+    <span class="hljs-number">1.0000</span>         <span class="hljs-number">0</span>         <span class="hljs-number">0</span>         <span class="hljs-number">0</span>
+   <span class="hljs-number">-0.8889</span>    <span class="hljs-number">1.0000</span>         <span class="hljs-number">0</span>         <span class="hljs-number">0</span>
+    <span class="hljs-number">0.5556</span>    <span class="hljs-number">0.7213</span>    <span class="hljs-number">1.0000</span>         <span class="hljs-number">0</span>
+   <span class="hljs-number">-0.6667</span>    <span class="hljs-number">0.6393</span>    <span class="hljs-number">0.0314</span>    <span class="hljs-number">1.0000</span>
+
+&gt;&gt; U
+
+U =
+
+    <span class="hljs-number">9.0000</span>    <span class="hljs-number">2.0000</span>    <span class="hljs-number">9.0000</span>   <span class="hljs-number">-9.0000</span>
+         <span class="hljs-number">0</span>    <span class="hljs-number">6.7778</span>   <span class="hljs-number">15.0000</span>  <span class="hljs-number">-11.0000</span>
+         <span class="hljs-number">0</span>         <span class="hljs-number">0</span>  <span class="hljs-number">-18.8197</span>    <span class="hljs-number">5.9344</span>
+         <span class="hljs-number">0</span>         <span class="hljs-number">0</span>         <span class="hljs-number">0</span>    <span class="hljs-number">5.8467</span>
+
+&gt;&gt; P
+
+P =
+
+     <span class="hljs-number">0</span>     <span class="hljs-number">1</span>     <span class="hljs-number">0</span>     <span class="hljs-number">0</span>
+     <span class="hljs-number">1</span>     <span class="hljs-number">0</span>     <span class="hljs-number">0</span>     <span class="hljs-number">0</span>
+     <span class="hljs-number">0</span>     <span class="hljs-number">0</span>     <span class="hljs-number">1</span>     <span class="hljs-number">0</span>
+     <span class="hljs-number">0</span>     <span class="hljs-number">0</span>     <span class="hljs-number">0</span>     <span class="hljs-number">1</span>
+
+&gt;&gt; X2
+
+X2 =
+
+    <span class="hljs-number">6.7348</span>
+   <span class="hljs-number">-0.0030</span>
+   <span class="hljs-number">-3.3927</span>
+    <span class="hljs-number">4.1192</span>
+</code></pre>
+<hr>
+<p>Podemos comprobar que era necesario multiplicar <code>P*B</code> para hacer la permuta pues la matriz de 
+permutación es distinta a la matriz identidad.</p>

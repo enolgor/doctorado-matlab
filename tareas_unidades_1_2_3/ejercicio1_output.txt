@@ -1,14 +1,15 @@
 >> ejercicio1
-Número de términos?: 5
-Términos:
+NÃºmero de tÃ©rminos?: 5
+TÃ©rminos:
     1.0000    0.6667    0.8667    0.7238    0.8349    0.7440
 
 Tolerancia?: 0.1
-Número de términos: 3, Error: 0.081269, Valor: 0.86667
+Nï¿½mero de tï¿½rminos: 3, Error: 0.081269, Valor: 0.86667
+
 >> ejercicio1
-Número de términos?: 10
-Términos:
+NÃºmero de tÃ©rminos?: 10
+TÃ©rminos:
     1.0000    0.6667    0.8667    0.7238    0.8349    0.7440    0.8209    0.7543    0.8131    0.7605    0.8081
 
 Tolerancia?: 0.001
-Número de términos: 250, Error: 0.001, Valor: 0.7844
+NÃºmero de tÃ©rminos: 250, Error: 0.001, Valor: 0.7844
