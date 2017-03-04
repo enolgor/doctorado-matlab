@@ -93,13 +93,13 @@ continucación utilizamos los comandos `mesh`, `surf` y `contour` para visualiza
 (intercalando el comando `figure` para crear nuevas figuras cada vez).
 
 **Mesh:**
-![mesh](https://github.com/jasuade/MatlabDoct/blob/enolgor/ejercicio1_mesh.png?raw=true)
+![](ejercicio1_mesh.png?raw=true)
 
 **Surf:**
-![surf](https://github.com/jasuade/MatlabDoct/blob/enolgor/ejercicio1_surf.png?raw=true)
+![](ejercicio1_surf.png?raw=true)
 
 **Contour:**
-![contour](https://github.com/jasuade/MatlabDoct/blob/enolgor/ejercicio1_contour.png?raw=true)
+![](ejercicio1_contour.png?raw=true)
 
 ### Ejercicio 3
 

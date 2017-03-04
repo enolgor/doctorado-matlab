@@ -15,4 +15,4 @@ marked.setOptions({
 });
 const htmlcontent = '<link rel="stylesheet" href="../markdown.css">\n'+marked(content);
 
-fs.writeFileSync('./output/'+carpeta+'.html', htmlcontent, 'utf8');
+fs.writeFileSync(carpeta+'/README.html', htmlcontent, 'utf8');
