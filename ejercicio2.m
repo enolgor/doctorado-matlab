@@ -6,4 +6,4 @@ mesh(X,Y,F);
 figure
 surf(X,Y,F);
 figure
-contour(X,Y,F);
+contour(X,Y,F,'ShowText','on');
