@@ -93,12 +93,15 @@ continucación utilizamos los comandos `mesh`, `surf` y `contour` para visualiza
 (intercalando el comando `figure` para crear nuevas figuras cada vez).
 
 **Mesh:**
+
 ![](ejercicio1_mesh.png?raw=true)
 
 **Surf:**
+
 ![](ejercicio1_surf.png?raw=true)
 
 **Contour:**
+
 ![](ejercicio1_contour.png?raw=true)
 
 ### Ejercicio 3
