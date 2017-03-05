@@ -1,4 +1,4 @@
-n = input('Número de términos?: ');
+n = input('Numero de terminos?: ');
 a = [];
 for k=0:n
     if k == 0
@@ -8,7 +8,7 @@ for k=0:n
     end
     a(k+1) = anterior + ((-1).^k)/(2.*k + 1);
 end
-disp('Términos:');
+disp('Terminos:');
 disp(a);
 
 tolerancia = abs(input('Tolerancia?: '));
@@ -20,4 +20,4 @@ while tolerancia < err
     err = abs(a - pi/4);
     k = k + 1;
 end
-disp(['Número de términos: ',num2str(k),', Error: ',num2str(err),', Valor: ',num2str(a)]);
+disp(['Numero de terminos: ',num2str(k),', Error: ',num2str(err),', Valor: ',num2str(a)]);

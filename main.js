@@ -4,22 +4,19 @@ marked.setOptions({
   highlight: (code)=>require('highlight.js').highlightAuto(code).value
 });
 
-const htmlToPdf = require('html5-to-pdf');
-
-
-const compilar = (carpeta) => {
+const compilar = (carpeta, estilo) => {
   const content = fs.readFileSync(carpeta + '/README.md', 'utf8');
-  const style = fs.readFileSync('./markdown.css');
+  const style = fs.readFileSync('node_modules/highlight.js/styles/'+estilo+'.css');
   const htmlcontent = '<style>'+style+'</style>\n'+marked(content);
-  fs.writeFileSync(carpeta+'/README.html', htmlcontent, 'utf8');
-  const converter = new htmlToPdf({
-    inputPath: carpeta+'/README.html',
-    outputPath: carpeta+'/README.pdf'
+  const inline = htmlcontent.replace(/src=\"([\w/]+)\.(png|jpe?g|gif)\?.+\"/g, function(match, file, type){
+    const fileName = carpeta + '/' + file + '.' + type;
+    const base64 = fs.readFileSync(fileName).toString('base64');
+    const string = 'src="data:image/' + (type === 'jpg' ? 'jpeg' : type) + ';base64,' + base64 + '"';
+    return string;
   });
-  converter.build(error => console.log(error));
+  fs.writeFileSync(carpeta+'/README.html', inline, 'utf8');
 };
 
+const estilo = 'github';
 
-const carpeta = './tareas_unidades_1_2_3';
-
-compilar('test');
+compilar('./tareas_unidades_1_2_3', estilo);

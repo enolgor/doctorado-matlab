@@ -13,7 +13,7 @@ Código:
 
 ---
 ```matlab
-n = input('Número de términos?: ');
+n = input('Numero de terminos?: ');
 a = [];
 for k=0:n
     if k == 0
@@ -23,7 +23,7 @@ for k=0:n
     end
     a(k+1) = anterior + ((-1).^k)/(2.*k + 1);
 end
-disp('Términos:');
+disp('Terminos:');
 disp(a);
 
 tolerancia = abs(input('Tolerancia?: '));
@@ -35,7 +35,7 @@ while tolerancia < err
     err = abs(a - pi/4);
     k = k + 1;
 end
-disp(['Número de términos: ',num2str(k),', Error: ',num2str(err),', Valor: ',num2str(a)]);
+disp(['Numero de terminos: ',num2str(k),', Error: ',num2str(err),', Valor: ',num2str(a)]);
 ```
 ---
 
@@ -52,20 +52,20 @@ Podemos ver dos ejemplos de este script a continuación:
 ---
 ```matlab
 >> ejercicio1
-Número de términos?: 5
-Términos:
+Numero de terminos?: 5
+Terminos:
     1.0000    0.6667    0.8667    0.7238    0.8349    0.7440
 
 Tolerancia?: 0.1
-Número de términos: 3, Error: 0.081269, Valor: 0.86667
+Numero de terminos: 3, Error: 0.081269, Valor: 0.86667
 
 >> ejercicio1
-Número de términos?: 10
-Términos:
+Numero de terminos?: 10
+Terminos:
     1.0000    0.6667    0.8667    0.7238    0.8349    0.7440    0.8209    0.7543    0.8131    0.7605    0.8081
 
 Tolerancia?: 0.001
-Número de términos: 250, Error: 0.001, Valor: 0.7844
+Numero de terminos: 250, Error: 0.001, Valor: 0.7844
 ```
 ---
 
@@ -95,9 +95,14 @@ continucación utilizamos los comandos `mesh`, `surf` y `contour` para visualiza
 **Mesh:**
 
 ![](ejercicio1_mesh.png?raw=true)
+
 **Surf:**
 
 ![](ejercicio1_surf.png?raw=true)
+
+La figura aparece de color negro porque el comando `surf` pinta los puntos de la 
+malla de color negro, en este caso, el tamaño de la figura es demasiado pequeño y
+la malla tiene muchos puntos, por lo que no se aprecian las zonas coloreadas. 
 
 **Contour:**
 

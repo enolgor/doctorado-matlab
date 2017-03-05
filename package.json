@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "Estadística y Métodos Matemáticos para la Investigación: Métodos Numéricos con Matlab. Curso 2016-17",
   "main": "main.js",
-  "scripts": {
-    "test": "embed-images tareas_unidades_1_2_3/README.md -o test/README.md"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jasuade/MatlabDoct.git"
@@ -18,9 +15,7 @@
   },
   "homepage": "https://github.com/jasuade/MatlabDoct#readme",
   "dependencies": {
-    "embed-images": "^1.0.1",
     "highlight.js": "^9.9.0",
-    "html5-to-pdf": "^2.2.1",
     "marked": "^0.3.6"
   }
 }
