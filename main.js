@@ -20,3 +20,5 @@ const compilar = (carpeta, estilo) => {
 const estilo = 'github';
 
 compilar('./tareas_unidades_1_2_3', estilo);
+
+compilar('./tareas_unidades_4_5_6', estilo);
