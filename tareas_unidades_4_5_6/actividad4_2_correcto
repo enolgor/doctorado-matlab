@@ -1,0 +1,39 @@
+diary on
+map = C_sig~=0; 
+  val_sig = sum(map);
+[comp,err] = sprintf('%d:%d',2^12,val_sig);
+ [comp_aprox,err] = sprintf('%d:%d',round(2^12/val_sig),1);
+error = rms(s,s_rec);
+[l_long_orig,err] = sprintf('Longitud original: %d \n',2^14);
+  [l_val_sig,err] = sprintf('Valores significativos: %d \n',val_sig);
+  [l_comp,err] = sprintf('Factor compresion de %s \n',comp);
+  [l_comp_aprox,err] = sprintf('\t (aproximadamente de %s) \n',comp_aprox);
+  [l_rms,err] = sprintf('Error RMS: %d \n',error);
+  sprintf('%s%s%s%s%s',l_long_orig,l_val_sig,l_comp,l_comp_aprox,l_rms)
+
+ans =
+
+Longitud original: 16384 
+Valores significativos: 153 
+Factor compresion de 4096:153 
+	 (aproximadamente de 27:1) 
+Error RMS: 1.516961e+01 
+
+
+[l_long_orig,err] = sprintf('Longitud original: %d \n',2^12);
+  [l_val_sig,err] = sprintf('Valores significativos: %d \n',val_sig);
+  [l_comp,err] = sprintf('Factor compresion de %s \n',comp);
+  [l_comp_aprox,err] = sprintf('\t (aproximadamente de %s) \n',comp_aprox);
+  [l_rms,err] = sprintf('Error RMS: %d \n',error);
+  sprintf('%s%s%s%s%s',l_long_orig,l_val_sig,l_comp,l_comp_aprox,l_rms)
+
+ans =
+
+Longitud original: 4096 
+Valores significativos: 153 
+Factor compresion de 4096:153 
+	 (aproximadamente de 27:1) 
+Error RMS: 1.516961e+01 
+
+
+diary off
