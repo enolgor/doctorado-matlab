@@ -7,7 +7,7 @@ marked.setOptions({
 const compilar = (carpeta, estilo) => {
   const content = fs.readFileSync(carpeta + '/README.md', 'utf8');
   const style = fs.readFileSync('node_modules/highlight.js/styles/'+estilo+'.css');
-  const htmlcontent = '<style>'+style+'</style>\n'+marked(content);
+  const htmlcontent = '<html>\n<head>\n<meta charset="UTF-8">\n<style>'+style+'</style>\n</head>\n<body>\n'+marked(content)+'\n</body>\n</html>';
   const inline = htmlcontent.replace(/src=\"([\w/]+)\.(png|jpe?g|gif)\?.+\"/g, function(match, file, type){
     const fileName = carpeta + '/' + file + '.' + type;
     const base64 = fs.readFileSync(fileName).toString('base64');
