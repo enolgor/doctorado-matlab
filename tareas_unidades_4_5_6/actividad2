@@ -1,0 +1,168 @@
+diary on
+andreu tonto
+{Undefined function or variable 'andreu'.
+} 
+diary off
+t = (0:.1:2)';
+y = [5.8955 3.5639 2.5173 1.9790 1.8990 1.3938 1.1359 ...
+1.0096 1.0343 0.8435 0.6856 0.6100 0.5392 0.3946 ...
+0.3903 0.5474 0.3459 0.1370 0.2211 0.1704 0.2636];
+plot(t, y, 'o');
+x = (0:0.01:2)';
+yq = interp1(t,y,x,'linear');
+hold
+Current plot held
+plot(x,yq);
+release
+{Undefined function or variable 'release'.
+} 
+rel
+{Undefined function or variable 'rel'.
+} 
+hold off
+plot(t, y, 'o');
+yq = interp1(t,y,x,'spline');
+yq = interp1(t,y,x,'pchip');
+hold on
+plot(x,yq);
+hold off
+plot(t, y, 'o');
+yq = interp1(t,y,x,'spline');
+plot(x,yq);
+plot(t, y, 'o');
+hold on
+plot(x,yq);
+5^20
+
+ans =
+
+     9.536743164062500e+13
+
+P = polyfit(t,y,20);
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('polyfit', 'C:\Program Files\MATLAB\R2016a\toolbox\matlab\polyfun\polyfit.m', 47)" style="font-weight:bold">polyfit</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2016a\toolbox\matlab\polyfun\polyfit.m',47,0)">line 47</a>)
+X and Y vectors must be the same size.
+} 
+y
+
+y =
+
+  Columns 1 through 2
+
+   5.895500000000000   3.563900000000000
+
+  Columns 3 through 4
+
+   2.517300000000000   1.979000000000000
+
+  Columns 5 through 6
+
+   1.899000000000000   1.393800000000000
+
+  Columns 7 through 8
+
+   1.135900000000000   1.009600000000000
+
+  Columns 9 through 10
+
+   1.034300000000000   0.843500000000000
+
+  Columns 11 through 12
+
+   0.685600000000000   0.610000000000000
+
+  Columns 13 through 14
+
+   0.539200000000000   0.394600000000000
+
+  Columns 15 through 16
+
+   0.390300000000000   0.547400000000000
+
+  Columns 17 through 18
+
+   0.345900000000000   0.137000000000000
+
+  Columns 19 through 20
+
+   0.221100000000000   0.170400000000000
+
+  Column 21
+
+   0.263600000000000
+
+t
+
+t =
+
+                   0
+   0.100000000000000
+   0.200000000000000
+   0.300000000000000
+   0.400000000000000
+   0.500000000000000
+   0.600000000000000
+   0.700000000000000
+   0.800000000000000
+   0.900000000000000
+   1.000000000000000
+   1.100000000000000
+   1.200000000000000
+   1.300000000000000
+   1.400000000000000
+   1.500000000000000
+   1.600000000000000
+   1.700000000000000
+   1.800000000000000
+   1.900000000000000
+   2.000000000000000
+
+P = polyfit(t',y,20);
+[Warning: Polynomial is badly conditioned.
+Add points with distinct X values, reduce
+the degree of the polynomial, or try
+centering and scaling as described in
+HELP POLYFIT.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('polyfit', 'C:\Program Files\MATLAB\R2016a\toolbox\matlab\polyfun\polyfit.m', 75)" style="font-weight:bold">polyfit</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2016a\toolbox\matlab\polyfun\polyfit.m',75,0)">line 75</a>)] 
+yq = polyval(P,xq);
+{Undefined function or variable 'xq'.
+} 
+yq = polyval(P,x);
+plot(t, y, 'o');
+hold off
+plot(t, y, 'o');
+plot(x, yq);
+tq = (t - 0.5)/2;
+P = polyfit(tq',y,20);
+[Warning: Polynomial is badly conditioned.
+Add points with distinct X values, reduce
+the degree of the polynomial, or try
+centering and scaling as described in
+HELP POLYFIT.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('polyfit', 'C:\Program Files\MATLAB\R2016a\toolbox\matlab\polyfun\polyfit.m', 75)" style="font-weight:bold">polyfit</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2016a\toolbox\matlab\polyfun\polyfit.m',75,0)">line 75</a>)] 
+sq = [-1:0.1:1];
+tq = (t - 1)/2;
+P = polyfit(tq',y,20);
+[Warning: Polynomial is badly conditioned.
+Add points with distinct X values, reduce
+the degree of the polynomial, or try
+centering and scaling as described in
+HELP POLYFIT.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('polyfit', 'C:\Program Files\MATLAB\R2016a\toolbox\matlab\polyfun\polyfit.m', 75)" style="font-weight:bold">polyfit</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2016a\toolbox\matlab\polyfun\polyfit.m',75,0)">line 75</a>)] 
+sq = [-1:0.01:1];
+tq = (t - 1);
+P = polyfit(tq',y,20);
+sq = [-1:0.01:1];
+yq = polyval(P, sq);
+s = sq + 1;
+plot(t,y,'o');
+hold on
+plot(s, yq);
+clear
+clc
+get(0,'diary')
+
+ans =
+
+on
+
+diary('actividad2-2');

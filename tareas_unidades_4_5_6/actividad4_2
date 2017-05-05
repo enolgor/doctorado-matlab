@@ -1,0 +1,50 @@
+t = linspace(0,4,2^12);
+x = (30.*t.^2).*((2 - t).^5).*((4 - t).^2).*cos(24.*pi.*t) + 20.*(t.^2).*((2 - t).^2).*((4 - t).^5).*cos(12.*pi.*t);
+hold off
+plot(t,x);
+s = (30.*t.^2).*((2 - t).^5).*((4 - t).^2).*cos(24.*pi.*t) + 20.*(t.^2).*((2 - t).^2).*((4 - t).^5).*cos(12.*pi.*t);
+x = linspace(0,4,2^12);
+[C,L] = wavedec(s,10,'coif5');
+C_dec = abs(sort(-abs(C)));
+ind_sobran = find(cumenergy(C_dec)>=0.9999);
+umbral = C_dec(ind_sobran(1)); 
+C_sig = wthresh(C,'h',umbral);
+s_rec = waverec(C_sig,L,'coif5');
+figure;
+  subplot(2,1,1); plot(s);
+  axis([1 2^14 min(s) max(s)]); title('original');
+  subplot(2,1,2); plot(s_rec);
+  axis([1 2^14 min(s_rec) max(s_rec)]); title('reconstruccion');
+figure;
+  subplot(2,1,1); plot(s);
+  axis([1 2^12 min(s) max(s)]); title('original');
+  subplot(2,1,2); plot(s_rec);
+  axis([1 2^12 min(s_rec) max(s_rec)]); title('reconstruccion');
+map = C_sig~=0; 
+  val_sig = sum(map);
+[comp,err] = sprintf('%d:%d',2^14,val_sig);
+  [comp_aprox,err] = sprintf('%d:%d',round(2^14/val_sig),1);
+error = rms(s,s_rec);
+[l_long_orig,err] = sprintf('Longitud original: %d \n',2^14);
+  [l_val_sig,err] = sprintf('Valores significativos: %d \n',val_sig);
+  [l_comp,err] = sprintf('Factor compresion de %s \n',comp);
+  [l_comp_aprox,err] = sprintf('\t (aproximadamente de %s) \n',comp_aprox);
+  [l_rms,err] = sprintf('Error RMS: %d \n',error);
+  sprintf('%s%s%s%s%s',l_long_orig,l_val_sig,l_comp,l_comp_aprox,l_rms);
+[l_long_orig,err] = sprintf('Longitud original: %d \n',2^14);
+  [l_val_sig,err] = sprintf('Valores significativos: %d \n',val_sig);
+  [l_comp,err] = sprintf('Factor compresion de %s \n',comp);
+  [l_comp_aprox,err] = sprintf('\t (aproximadamente de %s) \n',comp_aprox);
+  [l_rms,err] = sprintf('Error RMS: %d \n',error);
+  sprintf('%s%s%s%s%s',l_long_orig,l_val_sig,l_comp,l_comp_aprox,l_rms)
+
+ans =
+
+Longitud original: 16384 
+Valores significativos: 153 
+Factor compresion de 16384:153 
+	 (aproximadamente de 107:1) 
+Error RMS: 1.516961e+01 
+
+
+diary off

@@ -1,0 +1,7 @@
+diary on
+f = inline('0.00003*y*(25000 - y)', 't', 'y');
+[T, Y] = ode45(f, [0 60], 250);
+plot(T,Y,T,Y,'o');
+
+sum(Y)/length(Y);
+diary off

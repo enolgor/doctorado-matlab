@@ -1,0 +1,21 @@
+{
+  "name": "matlabdoct",
+  "version": "1.0.0",
+  "description": "Estadística y Métodos Matemáticos para la Investigación: Métodos Numéricos con Matlab. Curso 2016-17",
+  "main": "main.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jasuade/MatlabDoct.git"
+  },
+  "keywords": [],
+  "author": "enolgor <enolgor@teleco.upv.es> (http://enolgor.es)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jasuade/MatlabDoct/issues"
+  },
+  "homepage": "https://github.com/jasuade/MatlabDoct#readme",
+  "dependencies": {
+    "highlight.js": "^9.9.0",
+    "marked": "^0.3.6"
+  }
+}
