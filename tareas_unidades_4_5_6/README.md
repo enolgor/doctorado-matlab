@@ -18,10 +18,9 @@ el corte en el eje 0).
 ---
 ```matlab
 f = @(x) 816.*x.^3 - 3835.*x.^2 + 6000.*x - 3125;
->> fplot(f, [1, 2])
->> hold
-Current plot held
->> plot([1:0.1:2],0.*[1:0.1:2])
+fplot(f, [1, 2]);
+hold on;
+plot([1:0.1:2],0.*[1:0.1:2]);
 ```
 ---
 ![](fzero3.png?raw=true)
@@ -141,7 +140,7 @@ guardaremos los coeficientes del polinomio.
 xq = (0:0.01:2)';
 tq = t - 1;
 sq = xq - 1;
-P = polyfit(tq', y, 20);
+P = polyfit(tq, y, 20);
 yq = polyval(P, sq);
 plot(t, y, 'o', xq, yq);
 ```
@@ -214,4 +213,98 @@ plot(T,Y,T,Y,'o');
 ```
 ---
 
-![](loglineal.png?raw=true)
+![](enfermedad.png?raw=true)
+
+Calcular el número medio de personas contagiadas realizando la 
+media aritmética:
+
+---
+```matlab
+media = sum(Y)/length(Y);
+
+media =
+
+   1.9244e+04
+```
+---
+
+### Ejercicio 4
+
+Realizaremos el proceso completo de la sección de compresión de señales,
+para ello primero realizaremos los dos scripts necesarios: `cumenergy.m` y `rms.m`.
+A continuación se muestran el contenido de los script, y los comandos realizados
+para la obtención de las gráficas que muestran el proceso y los resultados obtenidos:
+
+#### cumenergy.m
+
+---
+```matlab
+function [ y ] = cumenergy( x )
+
+y = cumsum(x.^2)/(norm(x)^2);
+
+end
+
+```
+---
+
+#### rms.m
+
+---
+```matlab
+function [e] = rms(x,y)
+  
+  e = sqrt(norm(x-y)^2/length(x));
+
+end
+```
+---
+
+#### Proceso de compresión de la señal
+
+---
+```matlab
+t = linspace(0,4,2^12);
+s = (30.*t.^2).*((2 - t).^5).*((4 - t).^2).*cos(24.*pi.*t) ...
+ + 20.*(t.^2).*((2 - t).^2).*((4 - t).^5).*cos(12.*pi.*t);
+[C,L] = wavedec(s,10,'coif5');
+C_dec = abs(sort(-abs(C)));
+ind_sobran = find(cumenergy(C_dec)>=0.9999);
+umbral = C_dec(ind_sobran(1)); 
+C_sig = wthresh(C,'h',umbral);
+s_rec = waverec(C_sig,L,'coif5');
+figure;
+subplot(2,1,1);
+plot(s);
+axis([1 2^12 min(s) max(s)]);
+title('original');
+subplot(2,1,2);
+plot(s_rec);
+axis([1 2^12 min(s_rec) max(s_rec)]);
+title('reconstruccion');
+map = C_sig~=0; 
+val_sig = sum(map);
+[comp,err] = sprintf('%d:%d',2^12,val_sig);
+[comp_aprox,err] = sprintf('%d:%d',round(2^12/val_sig),1);
+error = rms(s,s_rec);
+[l_long_orig,err] = sprintf('Longitud original: %d \n',2^12);
+[l_val_sig,err] = sprintf('Valores significativos: %d \n',val_sig);
+[l_comp,err] = sprintf('Factor compresion de %s \n',comp);
+[l_comp_aprox,err] = sprintf('\t (aproximadamente de %s) \n',comp_aprox);
+[l_rms,err] = sprintf('Error RMS: %d \n',error);
+sprintf('%s%s%s%s%s',l_long_orig,l_val_sig,l_comp,l_comp_aprox,l_rms)
+```
+---
+
+#### Resultados
+---
+```matlab
+Longitud original: 4096 
+Valores significativos: 153 
+Factor compresion de 4096:153 
+	 (aproximadamente de 27:1) 
+Error RMS: 1.516961e+01 
+```
+---
+
+![](reconst.png?raw=true)
