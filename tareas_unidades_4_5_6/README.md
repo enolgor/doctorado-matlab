@@ -85,7 +85,7 @@ La muestra de datos se puede observar en la siguiente imagen:
 t = (0:.1:2)';
 y = [5.8955 3.5639 2.5173 1.9790 1.8990 1.3938 1.1359 ...
 1.0096 1.0343 0.8435 0.6856 0.6100 0.5392 0.3946 ...
-0.3903 0.5474 0.3459 0.1370 0.2211 0.1704 0.2636];
+0.3903 0.5474 0.3459 0.1370 0.2211 0.1704 0.2636]';
 plot(t, y, 'o');
 ```
 ---
@@ -97,11 +97,10 @@ plot(t, y, 'o');
 ---
 ```matlab
 xq = (0:0.01:2)';
-yq = interp1(t,y,x,'linear');
+yq = interp1(t, y, xq, 'linear');
 plot(t, y, 'o', xq, yq);
 ```
 ---
-**CAMBIAR ESTÁ MAL**
 
 ![](linear.png?raw=true)
 
@@ -110,7 +109,7 @@ plot(t, y, 'o', xq, yq);
 ---
 ```matlab
 xq = (0:0.01:2)';
-yq = interp1(t,y,x,'pchip');
+yq = interp1(t, y, xq, 'pchip');
 plot(t, y, 'o', xq, yq);
 ```
 ---
@@ -122,7 +121,7 @@ plot(t, y, 'o', xq, yq);
 ---
 ```matlab
 xq = (0:0.01:2)';
-yq = interp1(t,y,x,'spline');
+yq = interp1(t, y, xq, 'spline');
 plot(t, y, 'o', xq, yq);
 ```
 ---
@@ -161,7 +160,7 @@ y aproximados.
 xq = (0:0.01:2)';
 X = [t.^0 t.^1];
 b = X\y;
-yq=(b'*[xq.^0 xq.^1]')';
+yq = (b'*[xq.^0 xq.^1]')';
 plot(t, y, 'o', xq, yq);
 ```
 ---
@@ -175,9 +174,9 @@ Lo mismo que en el ajuste lineal pero esta vez con un polinomio de grado 2.
 ---
 ```matlab
 xq = (0:0.01:2)';
-X=[t.^0 t.^1 t.^2];
-b=X\y;
-yq=(b'*[x.^0 x.^1 x.^2]')';
+X = [t.^0 t.^1 t.^2];
+b = X\y;
+yq = (b'*[xq.^0 xq.^1 xq.^2]')';
 plot(t, y, 'o', xq, yq);
 ```
 ---
@@ -186,11 +185,33 @@ plot(t, y, 'o', xq, yq);
 
 #### Ajuste log-lineal de los datos
 
+Transformaremos los datos para linealizar la función
+exponencial tomando logaritmos.
+
 ---
 ```matlab
+xq = (0:0.01:2)';
+X=[t.^0 t.^1];
+b=X\log(y);
+yq=exp(b'*[xq.^0 xq.^1]')';
+plot(t, y, 'o', xq, yq);
 ```
 ---
 
 ![](loglineal.png?raw=true)
 
 ### Ejercicio 3
+
+Para calcular la evolución de la epidemia utilizaremos
+la función `ode45` para resolver la ecuación diferencial
+en el intervalo indicado.
+
+---
+```matlab
+f = inline('0.00003*y*(25000 - y)', 't', 'y');
+[T, Y] = ode45(f, [0 60], 250);
+plot(T,Y,T,Y,'o');
+```
+---
+
+![](loglineal.png?raw=true)
