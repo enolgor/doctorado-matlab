@@ -14,8 +14,4 @@
     "url": "https://github.com/jasuade/MatlabDoct/issues"
   },
   "homepage": "https://github.com/jasuade/MatlabDoct#readme",
-  "dependencies": {
-    "highlight.js": "^9.9.0",
-    "marked": "^0.3.6"
-  }
 }
